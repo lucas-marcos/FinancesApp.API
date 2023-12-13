@@ -33,4 +33,12 @@ public class FincancesController(IFinanceService _financeService, IMapper _mappe
 
         return Ok(_mapper.Map<List<FinanceTO>>(result));
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteById(int id)
+    {
+        _financeService.DeleteById(id);
+
+        return Ok();
+    } 
 }

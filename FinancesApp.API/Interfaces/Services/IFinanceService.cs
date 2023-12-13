@@ -9,4 +9,5 @@ public interface IFinanceService
     List<Finance> GetAll();
     List<Finance> GetAllByMonthNumber(int monthNumber);
     List<Finance> GetAllByMonthNumberAndTransactionType(int monthNumber, TransactionType transactionType);
+    void DeleteById(int id);
 }

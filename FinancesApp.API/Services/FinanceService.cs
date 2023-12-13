@@ -28,5 +28,11 @@ public class FinanceService(IFinanceRepository _financeRepository) : IFinanceSer
         return _financeRepository.BuscarTodos()
             .Where(a => a.Date.Month == monthNumber && a.TransactionType == transactionType)
             .ToList();
-    } 
+    }
+
+    public void DeleteById(int id)
+    {
+        _financeRepository.Remover(id);
+        _financeRepository.Salvar();
+    }
 }
