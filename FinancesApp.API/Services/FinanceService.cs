@@ -1,6 +1,7 @@
 ﻿using FinancesApp.API.Interfaces.Repositories;
 using FinancesApp.API.Interfaces.Services;
 using FinancesApp.API.Models;
+using FinancesApp.API.Models.Enums;
 
 namespace FinancesApp.API.Services;
 
@@ -19,6 +20,13 @@ public class FinanceService(IFinanceRepository _financeRepository) : IFinanceSer
     {
         return _financeRepository.BuscarTodos()
             .Where(a => a.Date.Month == monthNumber)
+            .ToList();
+    } 
+    
+    public List<Finance> GetAllByMonthNumberAndTransactionType(int monthNumber, TransactionType transactionType)
+    {
+        return _financeRepository.BuscarTodos()
+            .Where(a => a.Date.Month == monthNumber && a.TransactionType == transactionType)
             .ToList();
     } 
 }

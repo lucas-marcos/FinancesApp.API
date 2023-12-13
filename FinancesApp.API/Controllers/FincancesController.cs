@@ -2,6 +2,7 @@
 using FinancesApp.API.Interfaces.Services;
 using FinancesApp.API.Models;
 using FinancesApp.API.Models.DTOs;
+using FinancesApp.API.Models.Enums;
 using FinancesApp.API.Models.TOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +19,17 @@ public class FincancesController(IFinanceService _financeService, IMapper _mappe
     }
 
     [HttpGet("month/{monthNumber}"), AllowAnonymous]
-    public ActionResult<FinanceTO> GetAll(string monthNumber)
+    public ActionResult<FinanceTO> GetAllByMonthNumber(string monthNumber)
     {
         var result = _financeService.GetAllByMonthNumber(int.Parse(monthNumber));
+
+        return Ok(_mapper.Map<List<FinanceTO>>(result));
+    }
+    
+    [HttpGet("month/{monthNumber}/transactionType/{transactionType}"), AllowAnonymous]
+    public ActionResult<FinanceTO> GetAllByMonthNumberAndTransactionType(string monthNumber, TransactionType transactionType)
+    {
+        var result = _financeService.GetAllByMonthNumberAndTransactionType(int.Parse(monthNumber), transactionType);
 
         return Ok(_mapper.Map<List<FinanceTO>>(result));
     }
