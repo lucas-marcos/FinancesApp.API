@@ -5,7 +5,7 @@ namespace FinancesApp.API.Models.TOs;
 public class FinanceTO
 {
     public int Id { get; set; }
-    public int Value { get; set; }
+    public decimal Value { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public TransactionType TransactionType { get; set; }

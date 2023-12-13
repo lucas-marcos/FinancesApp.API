@@ -6,4 +6,5 @@ public interface IFinanceService
 {
     Finance Add(Finance finance);
     List<Finance> GetAll();
+    List<Finance> GetAllByMonthNumber(int monthNumber);
 }

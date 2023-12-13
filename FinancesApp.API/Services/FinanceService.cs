@@ -14,4 +14,11 @@ public class FinanceService(IFinanceRepository _financeRepository) : IFinanceSer
     }
 
     public List<Finance> GetAll() => _financeRepository.BuscarTodos().ToList();
+
+    public List<Finance> GetAllByMonthNumber(int monthNumber)
+    {
+        return _financeRepository.BuscarTodos()
+            .Where(a => a.Date.Month == monthNumber)
+            .ToList();
+    } 
 }

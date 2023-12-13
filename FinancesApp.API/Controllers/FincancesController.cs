@@ -12,15 +12,15 @@ namespace FinancesApp.API.Controllers;
 public class FincancesController(IFinanceService _financeService, IMapper _mapper) : ControllerBase
 {
     [HttpPost, AllowAnonymous]
-    public ActionResult<FinanceTO> AddFinance([FromBody] AddFinanceDTO addFinanceDto)
+    public ActionResult<FinanceTO> AddFinance(AddFinanceDTO addFinanceDto)
     {
         return Ok(_financeService.Add(_mapper.Map<Finance>(addFinanceDto)));
     }
 
-    [HttpGet, AllowAnonymous]
-    public ActionResult<FinanceTO> GetAll()
+    [HttpGet("month/{monthNumber}"), AllowAnonymous]
+    public ActionResult<FinanceTO> GetAll(string monthNumber)
     {
-        var result = _financeService.GetAll();
+        var result = _financeService.GetAllByMonthNumber(int.Parse(monthNumber));
 
         return Ok(_mapper.Map<List<FinanceTO>>(result));
     }
